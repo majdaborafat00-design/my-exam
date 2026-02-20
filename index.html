@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة امتحاناتي الخاصة</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; padding: 20px; }
+        .quiz-card { background: white; max-width: 800px; margin: auto; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { color: #1a73e8; text-align: center; }
+        .question { margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .options label { display: block; padding: 10px; cursor: pointer; border: 1px solid #ddd; margin: 5px 0; border-radius: 5px; }
+        .options label:hover { background-color: #f8f9fa; }
+        .submit-btn { background-color: #1a73e8; color: white; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; width: 100%; font-size: 18px; }
+        #message { display: none; text-align: center; color: green; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-card">
+    <h1>امتحان تكنولوجيا المعلومات</h1>
+    <form id="examForm">
+        <div class="question">
+            <p>1. بناءً على إرشادات NIST الحديثة، ما هو الطول الموصى به لكلمة السر؟</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="A"> من 8 إلى 64 حرفاً</label>
+                <label><input type="radio" name="q1" value="B"> 8 أحرف فقط</label>
+                <label><input type="radio" name="q1" value="C"> لا يوجد حد أقصى</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>2. عند تنفيذ الأمر ls /bin /nonexistent_folder، ماذا سيكون سلوك النظام؟</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="A"> سيفشل الأمر تماماً</label>
+                <label><input type="radio" name="q2" value="B"> سيعرض محتويات /bin ثم رسالة خطأ للمجلد غير الموجود</label>
+                <label><input type="radio" name="q2" value="C"> سيعرض رسالة خطأ فقط</label>
+            </div>
+        </div>
+
+        <button type="button" class="submit-btn" onclick="submitExam()">إرسال الإجابات</button>
+    </form>
+    <div id="message">تم استلام إجاباتك بنجاح! سيتم مراجعتها من قبل المعلم.</div>
+</div>
+
+<script>
+    function submitExam() {
+        // هنا نقوم بإخفاء الأسئلة وإظهار رسالة نجاح فقط
+        document.getElementById('examForm').style.display = 'none';
+        document.getElementById('message').style.display = 'block';
+        
+        // ملاحظة: هنا سنربط الإجابات بخدمة إرسال للإيميل لاحقاً
+        console.log("Answers submitted successfully.");
+    }
+</script>
+
+</body>
+</html>
