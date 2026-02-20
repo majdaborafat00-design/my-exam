@@ -3,231 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linux Full Certification Exam</title>
+    <title>Linux Administration Exam</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f7f6; padding: 20px; color: #2c3e50; line-height: 1.5; }
-        .quiz-container { max-width: 900px; margin: auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #1a73e8; border-bottom: 3px solid #1a73e8; padding-bottom: 10px; }
-        .info-section { background: #eef2f7; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 5px solid #1a73e8; }
-        .info-section input { width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        .question-box { margin-bottom: 35px; padding: 20px; border: 1px solid #eee; border-radius: 8px; transition: 0.3s; }
-        .question-box:hover { border-color: #1a73e8; background-color: #fafafa; }
-        .question-text { font-weight: bold; font-size: 1.1rem; margin-bottom: 15px; display: block; }
-        .options label { display: block; padding: 10px; margin: 5px 0; cursor: pointer; border-radius: 5px; background: #fff; border: 1px solid #f0f0f0; }
-        .options label:hover { background: #e8f0fe; }
-        .essay-area { width: 100%; height: 150px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; resize: vertical; font-family: monospace; }
-        .submit-btn { width: 100%; padding: 20px; background: #1a73e8; color: white; border: none; border-radius: 8px; font-size: 1.3rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .submit-btn:hover { background: #1557b0; transform: translateY(-2px); }
-        code { background: #eee; padding: 2px 5px; border-radius: 3px; font-family: 'Courier New', Courier, monospace; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f7f6; padding: 20px; color: #333; }
+        .quiz-container { max-width: 850px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #1a73e8; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; }
+        .info-section { background: #eef2f7; padding: 15px; border-radius: 8px; margin-bottom: 25px; }
+        .info-section input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .question-box { margin-bottom: 30px; padding: 20px; border: 1px solid #eee; border-radius: 8px; }
+        .question-text { font-weight: bold; margin-bottom: 15px; display: block; font-size: 1.05rem; }
+        .options label { display: block; padding: 10px; margin: 5px 0; cursor: pointer; border: 1px solid #f0f0f0; border-radius: 5px; }
+        .options label:hover { background: #f8f9fa; }
+        .essay-area { width: 100%; height: 150px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: monospace; }
+        .submit-btn { width: 100%; padding: 15px; background: #1a73e8; color: white; border: none; border-radius: 6px; font-size: 1.2rem; cursor: pointer; }
+        code { background: #eee; padding: 2px 4px; border-radius: 3px; font-family: monospace; }
     </style>
 </head>
 <body>
 
 <div class="quiz-container">
-    <h1>Final Linux Administration Exam (24 Questions)</h1>
-
+    <h1>Linux Administration Final Exam</h1>
     <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
         
         <div class="info-section">
-            <label><b>Student Full Name:</b></label>
-            <input type="text" name="student_name" required placeholder="Type your full name here...">
+            <label><b>Student Name:</b></label>
+            <input type="text" name="student_name" required>
         </div>
 
         <div class="question-box">
-            <span class="question-text">1. Consider the output: <code>kaekfjaeifj: command not found</code>. What is the most accurate explanation?</span>
+            <span class="question-text">1. Consider the following output from a Linux terminal session:<br><code>[me@linuxbox ~]$ kaekfjaeifj bash</code><br><code>kaekfjaeifj: command not found</code><br><br>Which of the following statements provides the most technically accurate explanation for this occurrence in the context of system security and path execution?</span>
             <div class="options">
-                <label><input type="radio" name="q1" value="A" required> A) Lack of sudo privileges for /root.</label>
-                <label><input type="radio" name="q1" value="B"> B) Command is a disabled shell function.</label>
-                <label><input type="radio" name="q1" value="C"> C) Shell searched $PATH and failed to find the executable.</label>
-                <label><input type="radio" name="q1" value="D"> D) CPU architecture incompatibility.</label>
+                <label><input type="radio" name="q1" value="A"> A) The system failed to execute the command because the user <b>me</b> does not have the necessary sudo privileges to access the /root directory where unknown binaries are stored by default</label>
+                <label><input type="radio" name="q1" value="B"> B) The command kaekfjaeifj is a built-in shell function that has been disabled in the current session's configuration file (.bashrc or .bash_profile)</label>
+                <label><input type="radio" name="q1" value="C"> C) The shell searched all directories defined in the <b>$PATH</b> environment variable and failed to find an executable file named kaekfjaeifj, or the file exists but lacks the "execute" permission bit for the current user</label>
+                <label><input type="radio" name="q1" value="D"> D) The syntax of the command is correct, but the CPU architecture of the linuxbox system is incompatible with the instruction set required by the binary kaekfjaeifj</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">2. Attempting <code>cd /data/secure/</code> (700) where parent /data/ is 000. What happens?</span>
+            <span class="question-text">2. A user named me is trying to enter a directory named /data/secure/. The permissions for the secure directory are set to 700 (drwx------) and it is owned by the user me. However, the parent directory /data/ has permissions set to 000 (d---------) and is owned by root. What happens when the user me executes the command cd /data/secure/?</span>
             <div class="options">
-                <label><input type="radio" name="q2" value="A" required> A) System uses sudo automatically.</label>
-                <label><input type="radio" name="q2" value="B"> B) Fails with "Permission denied" due to parent restriction.</label>
-                <label><input type="radio" name="q2" value="C"> C) Succeeds, but contents are invisible.</label>
-                <label><input type="radio" name="q2" value="D"> D) Succeeds because user owns the sub-folder.</label>
+                <label><input type="radio" name="q2" value="A"> A) C) The system will automatically use <b>sudo</b> to bypass the /data/ restriction since the destination folder is owned by the current user</label>
+                <label><input type="radio" name="q2" value="B"> B) B) The command fails with "Permission denied" because the user cannot "pass through" the /data/ directory to reach the secure sub-directory</label>
+                <label><input type="radio" name="q2" value="C"> C) D) The command succeeds, but the user will not be able to see any files inside secure until they change the permissions of /data/.</label>
+                <label><input type="radio" name="q2" value="D"> D) A) The command succeeds because the user me is the owner of the secure folder and has full rwx(7) permissions</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">3. Output of <code>ls /bin /nonexistent_folder</code>?</span>
+            <span class="question-text">3. A user executes the following command in the terminal: ls /bin /nonexistent_folder. What will be the output behavior of the shell regarding this command?</span>
             <div class="options">
-                <label><input type="radio" name="q3" value="A" required> A) Command fails entirely.</label>
-                <label><input type="radio" name="q3" value="B"> B) Missing folder is created.</label>
-                <label><input type="radio" name="q3" value="C"> C) Displays /bin first, then an error for the missing folder.</label>
-                <label><input type="radio" name="q3" value="D"> D) Error only.</label>
+                <label><input type="radio" name="q3" value="A"> A) The command will fail entirely and show no output because one of the provided arguments (/nonexistent_folder) does not exist</label>
+                <label><input type="radio" name="q3" value="B"> B) The command will automatically create the /nonexistent_folder and then list it as an empty directory</label>
+                <label><input type="radio" name="q3" value="C"> C) The shell will display the contents of the /bin directory first, followed by an error message stating that /nonexistent_folder cannot be accessed</label>
+                <label><input type="radio" name="q3" value="D"> D) The shell will only display an error message because Linux commands do not support passing more than one directory path to ls at the same time.</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">4. Command to copy directory while preserving all metadata?</span>
+            <span class="question-text">4. A system administrator needs to copy a directory named /projects/web_app/ to a backup drive... Which command is the most appropriate to ensure the entire structure is copied and all metadata (like owner and timestamps) is preserved?</span>
             <div class="options">
-                <label><input type="radio" name="q4" value="A" required> A) cp -a /projects/web_app/ /backup/</label>
-                <label><input type="radio" name="q4" value="B"> B) cp -v ...</label>
-                <label><input type="radio" name="q4" value="C"> C) cp -i ...</label>
+                <label><input type="radio" name="q4" value="A"> A) cp -a /projects/web_app/ /backup/</label>
+                <label><input type="radio" name="q4" value="B"> B) cp -v /projects/web_app/ /backup/</label>
+                <label><input type="radio" name="q4" value="C"> C) cp -i /projects/web_app/ /backup/</label>
+                <label><input type="radio" name="q4" value="D"> D) cp -u /projects/web_app/ /backup/</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">5. Create lab1, lab2, lab3, lab4 at once?</span>
+            <span class="question-text">5. if you want to create four separate directories named lab1, lab2, lab3, and lab4 all at once, which command is correct?</span>
             <div class="options">
-                <label><input type="radio" name="q5" value="A" required> A) mkdir [lab1-lab4]</label>
+                <label><input type="radio" name="q5" value="A"> A) mkdir [lab1-lab4]</label>
                 <label><input type="radio" name="q5" value="B"> B) mkdir lab1 lab2 lab3 lab4</label>
+                <label><input type="radio" name="q5" value="C"> C) mkdir Lab1, lab2, lab3, lab4</label>
+                <label><input type="radio" name="q5" value="D"> D) mkdir lab1-lab4</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">6. Symbolic link behavior after original file is renamed?</span>
+            <span class="question-text">6. A student is in /home/user/ and runs: ln -s /var/log/syslog my_log. The student then renames the original file from /var/log/syslog to /var/log/syslog.old. What happens when they try to read my_log?</span>
             <div class="options">
-                <label><input type="radio" name="q6" value="A" required> A) Link updates automatically.</label>
-                <label><input type="radio" name="q6" value="B"> B) Link breaks ("No such file or directory").</label>
+                <label><input type="radio" name="q6" value="A"> A) The link automatically updates to point to syslog.old.</label>
+                <label><input type="radio" name="q6" value="B"> B) The link "breaks" (becomes dangling) and gives a "No such file or directory" error.</label>
+                <label><input type="radio" name="q6" value="C"> C) The link still works because it is connected to the Inode of the file.</label>
+                <label><input type="radio" name="q6" value="D"> D) The system creates a new empty file named syslog to satisfy the link.</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">7. Which command uses correct Linux syntax for long format, time-sorted, reverse?</span>
+            <span class="question-text">7. A user wants to list files in long format, sorted by time, in reverse order. Which of the following commands is written with correct Linux syntax?</span>
             <div class="options">
-                <label><input type="radio" name="q7" value="A" required> A) ls -lt --reverse</label>
+                <label><input type="radio" name="q7" value="A"> A) ls -lt --reverse</label>
                 <label><input type="radio" name="q7" value="B"> B) ls -tl --reverse</label>
                 <label><input type="radio" name="q7" value="C"> C) ls -l -t --reverse</label>
-                <label><input type="radio" name="q7" value="D"> D) All of the above.</label>
+                <label><input type="radio" name="q7" value="D"> D) D) All of the above are correct.</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">8. Show hidden files but exclude "." and ".."?</span>
+            <span class="question-text">8. A user wants to list all contents of a directory, including hidden files (those starting with a dot), but they want to exclude the symbols for the current directory (.) and the parent directory (..) from the output to keep it cleaner. Which of the following commands should the user use, and what is the difference between the two primary "all" options?</span>
             <div class="options">
-                <label><input type="radio" name="q8" value="A" required> A) ls -a</label>
-                <label><input type="radio" name="q8" value="B"> B) ls -A</label>
+                <label><input type="radio" name="q8" value="A"> A) ls -a (because it shows "all" files, and the user can manually ignore the dots)</label>
+                <label><input type="radio" name="q8" value="B"> B) ls -h (because it makes the output "human-readable" by hiding the system directory symbols).</label>
+                <label><input type="radio" name="q8" value="C"> C) ls -A (because it shows "almost-all" files, including hidden ones but automatically excluding . and ..).</label>
+                <label><input type="radio" name="q8" value="D"> D) ls -S (because it sorts the files by size, which naturally pushes the . and .. to the end of the list).</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">9. In <code>less</code>, find previous occurrence and quit?</span>
+            <span class="question-text">9. A system administrator is using the less command to view a very large log file. After searching for a specific error string using /error, the screen highlights the first occurrence. The administrator now wants to find the "previous" occurrence (the one above the current view) and then immediately exit the program. Which sequence of keystrokes is required?</span>
             <div class="options">
-                <label><input type="radio" name="q9" value="B" required> B) Press Shift + N then q.</label>
-                <label><input type="radio" name="q9" value="D"> D) Press n then q.</label>
+                <label><input type="radio" name="q9" value="A"> A) Press 1G to return to the start, then use the Up Arrow to find the error.</label>
+                <label><input type="radio" name="q9" value="B"> B) Press Shift + N to search in the reverse direction, then press q to quit.</label>
+                <label><input type="radio" name="q9" value="C"> C) Press G to go to the end of the file, then press b to go back.</label>
+                <label><input type="radio" name="q9" value="D"> D) Press n to go to the next match, then press q to quit.</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">10. Relationship between Inode and Hard Link?</span>
+            <span class="question-text">10. In the Linux file system, what is the relationship between a file's Inode and a Hard Link?</span>
             <div class="options">
-                <label><input type="radio" name="q10" value="C" required> C) Hard Link is an additional directory entry pointing to the same Inode.</label>
-                <label><input type="radio" name="q10" value="A"> A) It's a copy in a different partition.</label>
+                <label><input type="radio" name="q10" value="A"> A) A Hard Link is a copy of the Inode stored in a different partition.</label>
+                <label><input type="radio" name="q10" value="B"> B) A Hard Link creates a new Inode that synchronizes its data with the original Inode.</label>
+                <label><input type="radio" name="q10" value="C"> C) A Hard Link is simply an additional directory entry (a name) that points to the exact same Inode as the original file.</label>
+                <label><input type="radio" name="q10" value="D"> D) Hard Links do not use Inodes; they use file paths to find the data.</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">11. Result of <code>ls -i file2.txt</code> after original file1.txt is deleted?</span>
+            <span class="question-text">11. You have a file file1.txt with an Inode number of 12345. You run the command: ln file1.txt file2.txt. Then, you run rm file1.txt. What will be the result of the command ls -i file2.txt?</span>
             <div class="options">
-                <label><input type="radio" name="q11" value="C" required> C) Shows same Inode number; data is still accessible.</label>
-                <label><input type="radio" name="q11" value="B"> B) Shows an error.</label>
+                <label><input type="radio" name="q11" value="A"> A) It will show that file2.txt is an empty file with 0 bytes.</label>
+                <label><input type="radio" name="q11" value="B"> B) It will show an error because the original Inode 12345 was deleted.</label>
+                <label><input type="radio" name="q11" value="C"> C) It will show the same Inode number 12345 and the data will still be accessible</label>
+                <label><input type="radio" name="q11" value="D"> D) It will show a new Inode number because the system reassigned the data.</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">12. Unique characteristic of Symbolic Links?</span>
+            <span class="question-text">12. Which of the following is a unique characteristic of Symbolic Links that Hard Links do not possess?</span>
             <div class="options">
-                <label><input type="radio" name="q12" value="C" required> C) Can point to directories and span across file systems.</label>
-                <label><input type="radio" name="q12" value="A"> A) Increase link count.</label>
+                <label><input type="radio" name="q12" value="A"> A) They increase the link count of the original file's Inode.</label>
+                <label><input type="radio" name="q12" value="B"> B) They occupy the same amount of disk space as the original file.</label>
+                <label><input type="radio" name="q12" value="C"> C) They can point to directories and can span across different file systems (partitions).</label>
+                <label><input type="radio" name="q12" value="D"> D) They remain functional even if the original file is moved to a different folder.</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">13. Command to create a copy of file1 named file2?</span>
+            <span class="question-text">13. Question: Which command is used to create a copy of file1 and name it file2?</span>
             <div class="options">
-                <label><input type="radio" name="q13" value="A" required> A) cp file1 file2</label>
+                <label><input type="radio" name="q13" value="A"> A) cp file1 file2</label>
+                <label><input type="radio" name="q13" value="B"> B) cp -i file2 file1</label>
+                <label><input type="radio" name="q13" value="C"> C) cp file1/ file2</label>
                 <label><input type="radio" name="q13" value="D"> D) cp -r file1 file2</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">14. Which flag asks for confirmation before overwriting?</span>
+            <span class="question-text">14. If you want the system to ask for confirmation before overwriting an existing file during the copy process, which flag should you use?</span>
             <div class="options">
-                <label><input type="radio" name="q14" value="D" required> D) -i</label>
+                <label><input type="radio" name="q14" value="A"> A) -r</label>
+                <label><input type="radio" name="q14" value="B"> B) -v</label>
                 <label><input type="radio" name="q14" value="C"> C) -f</label>
+                <label><input type="radio" name="q14" value="D"> D) -i</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">15. What happens when running <code>cp -r dir1 dir2</code> if dir2 already exists?</span>
+            <span class="question-text">15. What happens when you execute the command cp -r dir1 dir2 if the directory dir2 already exists?</span>
             <div class="options">
-                <label><input type="radio" name="q15" value="A" required> A) Copies dir1 into the dir2 folder.</label>
-                <label><input type="radio" name="q15" value="B"> B) Deletes dir2.</label>
+                <label><input type="radio" name="q15" value="A"> A) It copies the entire dir1 directory (and its contents) into the dir2 folder.</label>
+                <label><input type="radio" name="q15" value="B"> B) It deletes the existing dir2 and replaces it with dir1.</label>
+                <label><input type="radio" name="q15" value="C"> C) It only copies the files inside dir1 into dir2 without the folder itself.</label>
+                <label><input type="radio" name="q15" value="D"> D) It returns an error because dir2 is not empty.</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">16. Delete a directory and all its contents?</span>
+            <span class="question-text">16. You want to delete a directory named Old_Files that contains several subfolders and documents. Which command should you use to ensure the directory and all its contents are removed?</span>
             <div class="options">
-                <label><input type="radio" name="q16" value="B" required> B) rm -r Old_Files</label>
                 <label><input type="radio" name="q16" value="A"> A) rm -v Old_Files</label>
+                <label><input type="radio" name="q16" value="B"> B) rm -r Old_Files</label>
+                <label><input type="radio" name="q16" value="C"> C) rm -i Old_Files</label>
+                <label><input type="radio" name="q16" value="D"> D) rm -f Old_Files</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">17. Behavior of <code>rm -r -i -f -v</code>?</span>
+            <span class="question-text">17. A system administrator runs the following command: rm -r -i -f -v Important_Project. Based on the rules of rm options shown in the document, what will be the actual behavior of this command?</span>
             <div class="options">
-                <label><input type="radio" name="q17" value="B" required> B) Deletes recursively and skips all prompts (-f overrides -i).</label>
-                <label><input type="radio" name="q17" value="C"> C) Asks for confirmation.</label>
+                <label><input type="radio" name="q17" value="A"> A) The command will fail because -i (interactive) and -f (force) contradict each other and cannot be used together.</label>
+                <label><input type="radio" name="q17" value="B"> B) The command will delete the folder recursively and skip all confirmation prompts because -f overrides the effect of -i.</label>
+                <label><input type="radio" name="q17" value="C"> C) The command will delete the folder recursively but will still ask for confirmation for every file because -i was written after -r.</label>
+                <label><input type="radio" name="q17" value="D"> D) The command will only show the progress of deletion (-v) but will not actually delete anything because it's in "safe mode."</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">18. Count lines in a file?</span>
+            <span class="question-text">18. You have a file named students.txt. You want to find out only how many lines are in this file. Which command should you use?</span>
             <div class="options">
-                <label><input type="radio" name="q18" value="A" required> A) wc -l students.txt</label>
+                <label><input type="radio" name="q18" value="A"> A) wc -l students.txt</label>
+                <label><input type="radio" name="q18" value="B"> B) wc -c students.txt</label>
+                <label><input type="radio" name="q18" value="C"> C) wc -w students.txt</label>
+                <label><input type="radio" name="q18" value="D"> D) ls students.txt | wc</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">19. Sequence to search "error", remove duplicates, and count remaining lines?</span>
+            <span class="question-text">19. You are working on a file named data.txt. You want to search for the word "error" inside the file, remove any duplicate lines from the results, and then count how many lines are left. Which command sequence should you use?</span>
             <div class="options">
-                <label><input type="radio" name="q19" value="A" required> A) grep "error" data.txt | sort | uniq | wc -l</label>
+                <label><input type="radio" name="q19" value="A"> A) grep "error" data.txt | sort | uniq | wc -l</label>
+                <label><input type="radio" name="q19" value="B"> B) rm "error" data.txt | uniq | wc -l</label>
+                <label><input type="radio" name="q19" value="C"> C) grep "error" data.txt | wc -l | uniq</label>
+                <label><input type="radio" name="q19" value="D"> D) wc -l data.txt | grep "error" | uniq</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">20. Correct command for large server.log duplicates removal?</span>
+            <span class="question-text">20. You have a large file named server.log. You want to find all lines that contain the word "error", and you want to know the total count of these lines after removing any duplicate entries. Which command should you use?</span>
             <div class="options">
-                <label><input type="radio" name="q20" value="A" required> A) grep "error" server.log | sort | uniq | wc -l</label>
+                <label><input type="radio" name="q20" value="A"> A) grep "error" server.log | sort | uniq | wc -l</label>
+                <label><input type="radio" name="q20" value="B"> B) rm "error" server.log | uniq | wc -w</label>
+                <label><input type="radio" name="q20" value="C"> C) echo "error" * | uniq -d</label>
+                <label><input type="radio" name="q20" value="D"> D) grep "error" server.log | wc -c</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">21. Correct symbolic string for: Owner(rwx), Group(rwx), Others(none)?</span>
+            <span class="question-text">21. You have a directory named "Project_Alpha" that must be configured so the owner has full control (read, write, and execute), members of the group can enter the directory and create or rename files inside it, but others (rest of the users) should have no access at all. According to the permissions table and the chmod command rules, which of the following represents the correct symbolic permission string for this directory?</span>
             <div class="options">
-                <label><input type="radio" name="q21" value="C" required> C) drwxrwx---</label>
+                <label><input type="radio" name="q21" value="A"> A) -rwxrwx---</label>
+                <label><input type="radio" name="q21" value="B"> B) drwxr-x---</label>
+                <label><input type="radio" name="q21" value="C"> C) drwxrwx---</label>
+                <label><input type="radio" name="q21" value="D"> D) lrwxrwxrwx</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">22. Scenario Question: Filter "CRITICAL" lines from tasks.log into final_report.txt, change permissions (Owner/Group RW, Others none), and delete directory recursively.</span>
-            <p><i>Write your Linux commands and brief explanation below:</i></p>
-            <textarea name="q22_essay" class="essay-area" placeholder="Enter your commands here..."></textarea>
+            <span class="question-text">22. Scenario Question:<br>Inside a directory named /projects/data, you have a file called tasks.log.<br>1. Filter & Count: Find all unique lines containing the word "CRITICAL" and save the total count into a file named final_report.txt.<br>2. Permissions: Change the permissions of final_report.txt so the Owner and Group can Read and Write, but Others have no access.<br>3. Cleanup: Delete the entire /projects/data directory recursively without being asked for confirmation.<br><br>Task: Write the Linux commands for these steps and briefly explain the flags you used (e.g., -r, -f, -l).</span>
+            <textarea name="q22_answer" class="essay-area" placeholder="Enter your full commands and explanations here..."></textarea>
         </div>
 
         <div class="question-box">
-            <span class="question-text">23. Permissions: Owner(rwx), Group(rx), Others(none)?</span>
+            <span class="question-text">23. You have a file named confidential.txt. You want to set the permissions so the owner has full access (read, write, execute), the group can only read and execute, and others have no access at all.</span>
             <div class="options">
-                <label><input type="radio" name="q23" value="A" required> A) chmod 750 confidential.txt</label>
-                <label><input type="radio" name="q23" value="D"> D) chmod 700 ...</label>
+                <label><input type="radio" name="q23" value="A"> A) chmod 750 confidential.txt</label>
+                <label><input type="radio" name="q23" value="B"> B) chmod 640 confidential.txt</label>
+                <label><input type="radio" name="q23" value="C"> C) chmod 777 confidential.txt</label>
+                <label><input type="radio" name="q23" value="D"> D) chmod 700 confidential.txt</label>
             </div>
         </div>
 
         <div class="question-box">
-            <span class="question-text">24. Goal: Add execute for owner, and set group/others to read/write only.</span>
+            <span class="question-text">24. You need to modify the permissions of an existing file. The goal is to add execute permission for the owner, and at the same time, set (define) the permissions for both the group and others to be read and write only, removing any previous execute permissions they might have had.</span>
             <div class="options">
-                <label><input type="radio" name="q24" value="A" required> A) chmod u+x,go=rw file.txt</label>
+                <label><input type="radio" name="q24" value="A"> A) chmod u+x,go=rw file.txt</label>
+                <label><input type="radio" name="q24" value="B"> B) chmod u-x,go-rw file.txt</label>
+                <label><input type="radio" name="q24" value="C"> C) chmod a+x file.txt</label>
+                <label><input type="radio" name="q24" value="D"> D) chmod o-rw file.txt</label>
             </div>
         </div>
 
-        <button type="submit" class="submit-btn">Finalize & Submit Exam</button>
+        <button type="submit" class="submit-btn">Submit Exam</button>
     </form>
 </div>
 
