@@ -1,74 +1,34 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الامتحان الشامل - 24 سؤال</title>
-    <style>
-        body { font-family: 'Arial', sans-serif; background-color: #f4f7f9; padding: 20px; direction: rtl; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #2c3e50; }
-        .question-box { margin-bottom: 30px; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; }
-        .question-text { font-size: 1.1rem; font-weight: bold; color: #34495e; margin-bottom: 15px; }
-        .options label { display: block; padding: 10px; margin: 5px 0; background: #f9f9f9; border-radius: 5px; cursor: pointer; transition: 0.2s; }
-        .options label:hover { background: #edf2f7; }
-        .submit-btn { display: block; width: 100%; padding: 15px; background: #27ae60; color: white; border: none; border-radius: 8px; font-size: 1.2rem; cursor: pointer; }
-        .submit-btn:hover { background: #219150; }
-        input[type="text"] { width: 95%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc; }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>امتحان الـ 24 سؤالاً</h1>
-    <p style="text-align:center;">يرجى الإجابة على جميع الأسئلة بعناية.</p>
-
-    <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
-        
-        <div class="question-box" style="background: #eef2f3;">
-            <p class="question-text">بيانات الطالب:</p>
-            <input type="text" name="Student_Name" placeholder="اكتب اسمك الثلاثي هنا" required>
-        </div>
-
-        <div class="question-box">
-            <p class="question-text">1. ما هو طول كلمة السر الموصى به حسب NIST؟</p>
-            <div class="options">
-                <label><input type="radio" name="q1" value="8-64" required> بين 8 و 64 حرفاً</label>
-                <label><input type="radio" name="q1" value="8-only"> 8 أحرف فقط</label>
-                <label><input type="radio" name="q1" value="no-limit"> لا يوجد حد معين</label>
-            </div>
-        </div>
-
-        <div class="question-box">
-            <p class="question-text">2. ناتج تنفيذ الأمر ls /bin /nonexistent_folder هو:</p>
-            <div class="options">
-                <label><input type="radio" name="q2" value="fail"> فشل الأمر تماماً</label>
-                <label><input type="radio" name="q2" value="success-then-error" required> عرض محتويات bin ثم رسالة خطأ للمجلد المفقود</label>
-                <label><input type="radio" name="q2" value="error-only"> رسالة خطأ فقط</label>
-            </div>
-        </div>
-
-        <div class="question-box">
-            <p class="question-text">3. أي من الأوامر التالية يعتبر صحيحاً برمجياً في Linux؟</p>
-            <div class="options">
-                <label><input type="radio" name="q3" value="A"> ls -lt --reverse</label>
-                <label><input type="radio" name="q3" value="B"> ls -tl --reverse</label>
-                <label><input type="radio" name="q3" value="C"> ls -l -t --reverse</label>
-                <label><input type="radio" name="q3" value="all" required> كل ما ذكر صحيح</label>
-            </div>
-        </div>
-
-        <div class="question-box">
-            <p class="question-text">4. اكتب نص السؤال الرابع هنا من الـ PDF</p>
-            <div class="options">
-                <label><input type="radio" name="q4" value="opt1"> خيار أ</label>
-                <label><input type="radio" name="q4" value="opt2"> خيار ب</label>
-                <label><input type="radio" name="q4" value="opt3"> خيار ج</label>
-            </div>
-        </div>
-        <button type="submit" class="submit-btn">إرسال الإجابات النهائية</button>
-    </form>
+<div class="question-box">
+    <p class="question-text">1. Consider the following output from a Linux terminal session:<br>
+    <code style="background:#eee; padding:2px;">[me@linuxbox ~]$ kaekfjaeifj bash</code><br>
+    <code style="background:#eee; padding:2px;">kaekfjaeifj: command not found</code><br><br>
+    Which of the following statements provides the most technically accurate explanation for this occurrence in the context of system security and path execution?</p>
+    <div class="options">
+        <label><input type="radio" name="q1" value="A"> A) The system failed to execute the command because the user <b>me</b> does not have the necessary sudo privileges to access the /root directory.</label>
+        <label><input type="radio" name="q1" value="B"> B) The command kaekfjaeifj is a built-in shell function that has been disabled in the current session's configuration file (.bashrc or .bash_profile).</label>
+        <label><input type="radio" name="q1" value="C"> C) The shell searched all directories defined in the <b>$PATH</b> environment variable and failed to find an executable file named kaekfjaeifj.</label>
+        <label><input type="radio" name="q1" value="D"> D) The syntax of the command is correct, but the CPU architecture of the linuxbox system is incompatible with the instruction set required by the binary.</label>
+    </div>
 </div>
 
-</body>
-</html>
+<div class="question-box">
+    <p class="question-text">2. A user named <b>me</b> is trying to enter a directory named <b>/data/secure/</b>. The permissions for the secure directory are set to <b>700 (drwx------)</b> and it is owned by the user me. However, the parent directory <b>/data/</b> has permissions set to <b>000 (d---------)</b> and is owned by root.<br><br>
+    What happens when the user me executes the command <code style="background:#eee; padding:2px;">cd /data/secure/</code>?</p>
+    <div class="options">
+        <label><input type="radio" name="q2" value="A"> A) The system will automatically use <b>sudo</b> to bypass the /data/ restriction since the destination folder is owned by the current user.</label>
+        <label><input type="radio" name="q2" value="B"> B) The command fails with <b>"Permission denied"</b> because the user cannot "pass through" the /data/ directory to reach the secure sub-directory.</label>
+        <label><input type="radio" name="q2" value="C"> C) The command succeeds, but the user will not be able to see any files inside secure until they change the permissions of /data/.</label>
+        <label><input type="radio" name="q2" value="D"> D) The command succeeds because the user <b>me</b> is the owner of the <b>secure</b> folder and has full <b>rwx</b> (7) permissions.</label>
+    </div>
+</div>
+
+<div class="question-box">
+    <p class="question-text">3. A user executes the following command in the terminal: <code style="background:#eee; padding:2px;">ls /bin /nonexistent_folder</code><br><br>
+    What will be the output behavior of the shell regarding this command?</p>
+    <div class="options">
+        <label><input type="radio" name="q3" value="A"> A) The command will fail entirely and show no output because one of the provided arguments (/nonexistent_folder) does not exist.</label>
+        <label><input type="radio" name="q3" value="B"> B) The command will automatically create the /nonexistent_folder and then list it as an empty directory.</label>
+        <label><input type="radio" name="q3" value="C"> C) The shell will display the contents of the <b>/bin</b> directory first, followed by an error message stating that /nonexistent_folder cannot be accessed.</label>
+        <label><input type="radio" name="q3" value="D"> D) The shell will only display an error message because Linux commands do not support passing more than one directory path to ls at the same time.</label>
+    </div>
+</div>
