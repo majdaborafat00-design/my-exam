@@ -3,41 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linux Administration Professional Exam</title>
+    <title>Linux Administration Exam</title>
     <style>
         :root { --primary: #1a73e8; --secondary: #6c757d; --success: #28a745; --bg: #f4f7f6; }
         body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .quiz-container { width: 100%; max-width: 850px; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; min-height: 500px; }
+        .quiz-container { width: 100%; max-width: 850px; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; }
         
-        /* Sections */
-        .section { display: none; }
-        .active { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* إخفاء الأقسام والأسئلة افتراضياً */
+        .section, .question-step { display: none; }
+        .active { display: block; animation: fadeIn 0.4s; }
 
         h1 { text-align: center; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 10px; }
-        .info-section input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        .timer-bar { position: sticky; top: 0; background: var(--primary); color: white; padding: 10px; text-align: center; border-radius: 8px; font-weight: bold; margin-bottom: 20px; display: none; z-index: 100; }
         
-        .timer-bar { position: sticky; top: 0; background: var(--primary); color: white; padding: 10px; text-align: center; border-radius: 8px; font-weight: bold; margin-bottom: 20px; font-size: 1.2rem; display: none; }
+        .question-box { padding: 25px; border: 1px solid #eee; border-radius: 12px; background: #fff; margin-bottom: 20px; }
+        .question-text { font-weight: bold; font-size: 1.2rem; margin-bottom: 20px; display: block; line-height: 1.6; color: #202124; }
         
-        .question-box { padding: 20px; border: 1px solid #eee; border-radius: 10px; background: #fff; }
-        .question-text { font-weight: bold; font-size: 1.15rem; margin-bottom: 20px; display: block; line-height: 1.6; }
+        .options label { display: block; padding: 15px; margin: 10px 0; cursor: pointer; border: 1px solid #ddd; border-radius: 8px; transition: 0.3s; }
+        .options label:hover { background: #f1f3f4; }
+        .options input[type="radio"]:checked + span { font-weight: bold; color: var(--primary); }
+        .options input { margin-right: 15px; transform: scale(1.3); }
         
-        .options label { display: block; padding: 15px; margin: 10px 0; cursor: pointer; border: 1px solid #ddd; border-radius: 8px; transition: 0.2s; }
-        .options label:hover { background: #e8f0fe; border-color: var(--primary); }
-        .options input { margin-right: 15px; transform: scale(1.2); }
+        .essay-area { width: 100%; height: 200px; padding: 15px; border: 1px solid #ccc; border-radius: 8px; font-family: 'Courier New', monospace; box-sizing: border-box; }
         
-        .essay-area { width: 100%; height: 180px; padding: 15px; border: 1px solid #ccc; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 1rem; }
-        
-        .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; }
-        button { padding: 12px 30px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: bold; transition: 0.3s; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; }
+        button { padding: 12px 35px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: bold; }
         .btn-next { background: var(--primary); color: white; }
         .btn-prev { background: var(--secondary); color: white; }
-        .btn-start { background: var(--success); color: white; width: 100%; font-size: 1.2rem; }
+        .btn-submit { background: var(--success); color: white; }
         button:disabled { background: #ccc; cursor: not-allowed; }
-        
-        .progress { text-align: center; color: #666; margin-top: 15px; font-size: 0.9rem; }
-        .instructions { background: #fff3cd; padding: 20px; border-radius: 8px; border-left: 5px solid #ffca2c; margin-bottom: 25px; line-height: 1.8; }
-        code { background: #eee; padding: 2px 5px; border-radius: 4px; font-family: monospace; color: #d63384; }
+
+        .progress { text-align: center; margin-top: 15px; font-weight: bold; color: #5f6368; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -48,167 +46,125 @@
     <form id="quizForm" action="https://formspree.io/f/xaqddprd" method="POST">
         
         <div id="section-login" class="section active">
-            <h1>Student Login</h1>
-            <div class="info-section">
-                <label><b>Full Name:</b></label>
-                <input type="text" id="student_name_input" name="student_name" required placeholder="Enter your full name">
-                <label><b>Student ID / Access Code:</b></label>
-                <input type="password" id="access_code" placeholder="Enter access code">
+            <h1>Linux Exam Login</h1>
+            <div style="padding: 20px 0;">
+                <label><b>Student Name:</b></label>
+                <input type="text" name="student_name" id="student_name" required placeholder="Enter your full name">
+                <label><b>Access Code:</b></label>
+                <input type="password" placeholder="Enter code (Optional)">
             </div>
-            <button type="button" class="btn-start" onclick="goToInstructions()">Continue</button>
-        </div>
-
-        <div id="section-instructions" class="section">
-            <h1>Exam Instructions</h1>
-            <div class="instructions">
-                • <b>Duration:</b> You have exactly 90 minutes to complete the exam.<br>
-                • <b>Navigation:</b> You must answer the current question to proceed to the next.<br>
-                • <b>Attempts:</b> You can only submit this exam ONCE.<br>
-                • <b>Completion:</b> Do not refresh the page or you will lose your progress.
-            </div>
-            <button type="button" class="btn-start" onclick="startExam()">Start Exam Now</button>
+            <button type="button" class="btn-next" style="width: 100%;" onclick="startExam()">Enter Exam</button>
         </div>
 
         <div id="section-questions" class="section">
-            <div id="questions-wrapper">
+            
+            <div class="question-step active" id="step-1">
+                <div class="question-box">
+                    <span class="question-text">1. Consider the following output from a Linux terminal session:<br><code>[me@linuxbox ~]$ kaekfjaeifj bash</code><br><code>kaekfjaeifj: command not found</code><br><br>Which explaination is technically accurate?</span>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="A"> <span>A) The system failed due to missing sudo privileges to /root.</span></label>
+                        <label><input type="radio" name="q1" value="B"> <span>B) The command is a disabled built-in shell function.</span></label>
+                        <label><input type="radio" name="q1" value="C"> <span>C) Shell searched $PATH and failed to find an executable file or lacks permission.</span></label>
+                        <label><input type="radio" name="q1" value="D"> <span>D) The CPU architecture is incompatible with the binary.</span></label>
+                    </div>
                 </div>
-            
+            </div>
+
+            <div class="question-step" id="step-2">
+                <div class="question-box">
+                    <span class="question-text">2. A user named "me" tries <code>cd /data/secure/</code>. The folder is owned by "me" (700), but the parent <code>/data/</code> is (000) owned by root. What happens?</span>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="A"> <span>A) System uses sudo automatically.</span></label>
+                        <label><input type="radio" name="q2" value="B"> <span>B) Command fails (Permission denied) - cannot pass through /data/.</span></label>
+                        <label><input type="radio" name="q2" value="C"> <span>C) Succeeds, but files inside are invisible.</span></label>
+                        <label><input type="radio" name="q2" value="D"> <span>D) Succeeds because user owns the sub-folder.</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-step" id="step-3">
+                <div class="question-box">
+                    <span class="question-text">3. What is the behavior of <code>ls /bin /nonexistent_folder</code>?</span>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="A"> <span>A) Fails entirely with no output.</span></label>
+                        <label><input type="radio" name="q3" value="B"> <span>B) Creates the folder automatically.</span></label>
+                        <label><input type="radio" name="q3" value="C"> <span>C) Lists /bin first, then shows error for the missing folder.</span></label>
+                        <label><input type="radio" name="q3" value="D"> <span>D) Only displays an error message.</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-step" id="step-22">
+                <div class="question-box">
+                    <span class="question-text">22. Scenario: Filter 'CRITICAL' lines from tasks.log, save count to final_report.txt, set permissions (Owner/Group RW), and delete /projects/data. Write the commands:</span>
+                    <textarea name="q22_essay" class="essay-area" placeholder="Type your Linux commands and explanation here..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-step" id="step-24">
+                <div class="question-box">
+                    <span class="question-text">24. Modify permissions: Add execute for owner, and set group/others to read/write only (removing old execute).</span>
+                    <div class="options">
+                        <label><input type="radio" name="q24" value="A"> <span>A) chmod u+x,go=rw file.txt</span></label>
+                        <label><input type="radio" name="q24" value="B"> <span>B) chmod u-x,go-rw file.txt</span></label>
+                        <label><input type="radio" name="q24" value="C) chmod a+x file.txt"> <span>C) chmod a+x file.txt</span></label>
+                        <label><input type="radio" name="q24" value="D) chmod o-rw file.txt"> <span>D) chmod o-rw file.txt</span></label>
+                    </div>
+                </div>
+            </div>
+
             <div class="progress" id="progress-text">Question 1 of 24</div>
-            
+
             <div class="nav-buttons">
-                <button type="button" class="btn-prev" id="prevBtn" onclick="navigate(-1)">Previous</button>
-                <button type="button" class="btn-next" id="nextBtn" onclick="navigate(1)">Next</button>
-                <button type="submit" class="btn-start" id="submitBtn" style="display:none; width:auto;">Submit Final Exam</button>
+                <button type="button" class="btn-prev" id="prevBtn" onclick="changeQuestion(-1)" disabled>Previous</button>
+                <button type="button" class="btn-next" id="nextBtn" onclick="changeQuestion(1)">Next</button>
+                <button type="submit" class="btn-submit" id="submitBtn" style="display: none;">Submit Final Exam</button>
             </div>
         </div>
     </form>
 </div>
 
 <script>
-    // Data structure containing all 24 questions from your original code
-    const questions = [
-        { id: 1, type: 'mcq', text: `Consider the following output from a Linux terminal session:<br><code>[me@linuxbox ~]$ kaekfjaeifj bash</code><br><code>kaekfjaeifj: command not found</code><br><br>Which of the following statements provides the most technically accurate explanation for this occurrence in the context of system security and path execution?`, 
-          options: [
-            "A) The system failed to execute the command because the user me does not have the necessary sudo privileges to access the /root directory where unknown binaries are stored by default",
-            "B) The command kaekfjaeifj is a built-in shell function that has been disabled in the current session's configuration file (.bashrc or .bash_profile)",
-            "C) The shell searched all directories defined in the $PATH environment variable and failed to find an executable file named kaekfjaeifj, or the file exists but lacks the 'execute' permission bit for the current user",
-            "D) The syntax of the command is correct, but the CPU architecture of the linuxbox system is incompatible with the instruction set required by the binary kaekfjaeifj"
-          ]},
-        { id: 2, type: 'mcq', text: `A user named me is trying to enter a directory named /data/secure/. The permissions for the secure directory are set to 700 (drwx------) and it is owned by the user me. However, the parent directory /data/ has permissions set to 000 (d---------) and is owned by root. What happens when the user me executes the command <code>cd /data/secure/</code>?`,
-          options: [
-            "A) The system will automatically use sudo to bypass the /data/ restriction since the destination folder is owned by the current user",
-            "B) The command fails with 'Permission denied' because the user cannot 'pass through' the /data/ directory to reach the secure sub-directory",
-            "C) The command succeeds, but the user will not be able to see any files inside secure until they change the permissions of /data/",
-            "D) The command succeeds because the user me is the owner of the secure folder and has full rwx (7) permissions"
-          ]},
-        { id: 3, type: 'mcq', text: `A user executes the following command in the terminal: <code>ls /bin /nonexistent_folder</code>. What will be the output behavior of the shell regarding this command?`,
-          options: [
-            "A) The command will fail entirely and show no output because one of the provided arguments (/nonexistent_folder) does not exist",
-            "B) The command will automatically create the /nonexistent_folder and then list it as an empty directory",
-            "C) The shell will display the contents of the /bin directory first, followed by an error message stating that /nonexistent_folder cannot be accessed",
-            "D) The shell will only display an error message because Linux commands do not support passing more than one directory path to ls at the same time"
-          ]},
-        { id: 4, type: 'mcq', text: `A system administrator needs to copy a directory named /projects/web_app/ to a backup drive. This directory contains several sub-directories, hidden configuration files, and specific file ownership/permissions that must remain exactly the same after the copy. Which of the following commands is the most appropriate to ensure the entire structure is copied and all metadata (like owner and timestamps) is preserved?`,
-          options: ["A) cp -a /projects/web_app/ /backup/", "B) cp -v /projects/web_app/ /backup/", "C) cp -i /projects/web_app/ /backup/", "D) cp -u /projects/web_app/ /backup/"]},
-        { id: 5, type: 'mcq', text: `If you want to create four separate directories named lab1, lab2, lab3, and lab4 all at once, which command is correct?`,
-          options: ["A) mkdir [lab1-lab4]", "B) mkdir lab1 lab2 lab3 lab4", "C) mkdir Lab1, lab2, lab3, lab4", "D) mkdir lab1-lab4"]},
-        { id: 6, type: 'mcq', text: `A student is in /home/user/ and runs: <code>ln -s /var/log/syslog my_log</code>. The student then renames the original file from /var/log/syslog to /var/log/syslog.old. What happens when they try to read my_log?`,
-          options: [
-            "A) The link automatically updates to point to syslog.old.",
-            "B) The link 'breaks' (becomes dangling) and gives a 'No such file or directory' error.",
-            "C) The link still works because it is connected to the Inode of the file.",
-            "D) The system creates a new empty file named syslog to satisfy the link."
-          ]},
-        { id: 7, type: 'mcq', text: `A user wants to list files in long format, sorted by time, in reverse order. Which of the following commands is written with correct Linux syntax?`,
-          options: ["A) ls -lt --reverse", "B) ls -tl --reverse", "C) ls -l -t --reverse", "D) All of the above are correct."]},
-        { id: 8, type: 'mcq', text: `A user wants to list all contents of a directory, including hidden files (those starting with a dot), but they want to exclude the symbols for the current directory (.) and the parent directory (..) from the output. Which command should they use?`,
-          options: ["A) ls -a", "B) ls -h", "C) ls -A", "D) ls -S"]},
-        { id: 9, type: 'mcq', text: `A system administrator is using <b>less</b>. After searching for <code>/error</code>, the administrator wants to find the "previous" occurrence (above current view) and then immediately exit. Which sequence?`,
-          options: ["A) Press 1G then Up Arrow.", "B) Press Shift + N then q.", "C) Press G then b.", "D) Press n then q."]},
-        { id: 10, type: 'mcq', text: `In the Linux file system, what is the relationship between a file's Inode and a Hard Link?`,
-          options: [
-            "A) A Hard Link is a copy of the Inode stored in a different partition.",
-            "B) A Hard Link creates a new Inode that synchronizes its data.",
-            "C) A Hard Link is simply an additional directory entry (a name) that points to the exact same Inode.",
-            "D) Hard Links do not use Inodes."
-          ]},
-        { id: 11, type: 'mcq', text: `You have file1.txt (Inode 12345). You run <code>ln file1.txt file2.txt</code> then <code>rm file1.txt</code>. Result of <code>ls -i file2.txt</code>?`,
-          options: ["A) Empty file.", "B) Error.", "C) Same Inode 12345 and data still accessible.", "D) New Inode number."]},
-        { id: 12, type: 'mcq', text: `Which is a unique characteristic of Symbolic Links that Hard Links do not possess?`,
-          options: ["A) Increase link count.", "B) Occupy same space.", "C) Can point to directories and span across different file systems.", "D) Remain functional if moved."]},
-        { id: 13, type: 'mcq', text: `Which command is used to create a copy of file1 and name it file2?`,
-          options: ["A) cp file1 file2", "B) cp -i file2 file1", "C) cp file1/ file2", "D) cp -r file1 file2"]},
-        { id: 14, type: 'mcq', text: `If you want the system to ask for confirmation before overwriting an existing file during copy, which flag?`,
-          options: ["A) -r", "B) -v", "C) -f", "D) -i"]},
-        { id: 15, type: 'mcq', text: `What happens when you execute <code>cp -r dir1 dir2</code> if dir2 already exists?`,
-          options: ["A) Copies entire dir1 folder into dir2.", "B) Deletes dir2.", "C) Only copies files inside.", "D) Error."]},
-        { id: 16, type: 'mcq', text: `You want to delete directory Old_Files and all its contents. Which command?`,
-          options: ["A) rm -v Old_Files", "B) rm -r Old_Files", "C) rm -i Old_Files", "D) rm -f Old_Files"]},
-        { id: 17, type: 'mcq', text: `Administrator runs: <code>rm -r -i -f -v Important_Project</code>. What is the behavior?`,
-          options: [
-            "A) Command fails (contradiction).",
-            "B) Deletes recursively, skips prompts ( -f overrides -i).",
-            "C) Still asks for confirmation.",
-            "D) Only shows progress (-v)."
-          ]},
-        { id: 18, type: 'mcq', text: `You have students.txt. You want to find out only how many lines are in this file. Which command?`,
-          options: ["A) wc -l students.txt", "B) wc -c students.txt", "C) wc -w students.txt", "D) ls students.txt | wc"]},
-        { id: 19, type: 'mcq', text: `Search for "error" in data.txt, remove duplicates, count lines. Sequence?`,
-          options: ["A) grep 'error' data.txt | sort | uniq | wc -l", "B) rm 'error' | uniq | wc -l", "C) grep | wc -l | uniq", "D) wc -l | grep | uniq"]},
-        { id: 20, type: 'mcq', text: `Large file server.log. Find all lines with "error", count total after removing duplicates. Which command?`,
-          options: ["A) grep 'error' server.log | sort | uniq | wc -l", "B) rm 'error' | uniq | wc -w", "C) echo 'error' * | uniq -d", "D) grep 'error' server.log | wc -c"]},
-        { id: 21, type: 'mcq', text: `Directory Project_Alpha: Owner (rwx), Group (rwx), Others (none). Symbolic string?`,
-          options: ["A) -rwxrwx---", "B) drwxr-x---", "C) drwxrwx---", "D) lrwxrwxrwx"]},
-        { id: 22, type: 'essay', text: `<b>Scenario Question:</b><br>Inside <code>/projects/data</code>, you have <b>tasks.log</b>.<br>1. Filter & Count: Find unique lines with "CRITICAL", save count to <b>final_report.txt</b>.<br>2. Permissions: Owner/Group (RW), Others (none).<br>3. Cleanup: Delete <code>/projects/data</code> recursively without confirmation.<br><br>Task: Write the commands and explain flags used.`},
-        { id: 23, type: 'mcq', text: `File confidential.txt: Owner (full), Group (read/execute), Others (none).`,
-          options: ["A) chmod 750", "B) chmod 640", "C) chmod 777", "D) chmod 700"]},
-        { id: 24, type: 'mcq', text: `Modify permissions: Add execute for owner, set group and others to read/write only (removing previous execute).`,
-          options: ["A) chmod u+x,go=rw file.txt", "B) chmod u-x,go-rw file.txt", "C) chmod a+x file.txt", "D) chmod o-rw file.txt"]}
-    ];
-
-    let currentStep = 0;
-    const totalQuestions = questions.length;
-    let timerInterval;
-
-    function goToInstructions() {
-        const name = document.getElementById('student_name_input').value;
-        if(!name) { alert("Please enter your name"); return; }
-        document.getElementById('section-login').classList.remove('active');
-        document.getElementById('section-instructions').classList.add('active');
-    }
+    let currentStep = 1;
+    const totalSteps = 24; // عدّلها حسب عدد الأسئلة الكلي
 
     function startExam() {
-        document.getElementById('section-instructions').classList.remove('active');
+        const name = document.getElementById('student_name').value;
+        if (!name) { alert("Please enter your name!"); return; }
+        
+        document.getElementById('section-login').classList.remove('active');
         document.getElementById('section-questions').classList.add('active');
         document.getElementById('timer').style.display = 'block';
-        startTimer(90 * 60); // 90 minutes
-        renderQuestion();
+        runTimer(90 * 60);
     }
 
-    function renderQuestion() {
-        const q = questions[currentStep];
-        const wrapper = document.getElementById('questions-wrapper');
-        let html = `<div class="question-box">
-                        <span class="question-text">${q.id}. ${q.text}</span>`;
-        
-        if(q.type === 'mcq') {
-            html += `<div class="options">`;
-            q.options.forEach((opt, index) => {
-                const letter = String.fromCharCode(65 + index);
-                html += `<label><input type="radio" name="q${q.id}" value="${letter}" required> ${opt}</label>`;
-            });
-            html += `</div>`;
-        } else {
-            html += `<textarea name="q${q.id}_essay" class="essay-area" placeholder="Write your commands and explanation here..." required></textarea>`;
+    function changeQuestion(n) {
+        // التحقق من أن الطالب اختار إجابة قبل الذهاب للسؤال التالي
+        if (n === 1) {
+            const currentQ = document.getElementById('step-' + currentStep);
+            const radios = currentQ.querySelectorAll('input[type="radio"]');
+            const area = currentQ.querySelector('textarea');
+            let checked = false;
+            
+            if (radios.length > 0) {
+                radios.forEach(r => { if(r.checked) checked = true; });
+            } else if (area) {
+                if (area.value.trim() !== "") checked = true;
+            }
+
+            if (!checked) { alert("Please provide an answer before moving forward."); return; }
         }
+
+        // إخفاء الحالي وإظهار الجديد
+        document.getElementById('step-' + currentStep).classList.remove('active');
+        currentStep += n;
+        document.getElementById('step-' + currentStep).classList.add('active');
+
+        // تحديث الأزرار والنصوص
+        document.getElementById('prevBtn').disabled = (currentStep === 1);
+        document.getElementById('progress-text').innerText = `Question ${currentStep} of ${totalSteps}`;
         
-        html += `</div>`;
-        wrapper.innerHTML = html;
-        document.getElementById('progress-text').innerText = `Question ${currentStep + 1} of ${totalQuestions}`;
-        
-        // Update Buttons
-        document.getElementById('prevBtn').disabled = (currentStep === 0);
-        if(currentStep === totalQuestions - 1) {
+        if (currentStep === totalSteps) {
             document.getElementById('nextBtn').style.display = 'none';
             document.getElementById('submitBtn').style.display = 'inline-block';
         } else {
@@ -217,41 +173,20 @@
         }
     }
 
-    function navigate(step) {
-        // Validation: Ensure answer is provided before going next
-        if(step === 1) {
-            const currentQ = questions[currentStep];
-            if(currentQ.type === 'mcq') {
-                const selected = document.querySelector(`input[name="q${currentQ.id}"]:checked`);
-                if(!selected) { alert("Please select an answer before moving to the next question."); return; }
-            } else {
-                const text = document.querySelector(`textarea[name="q${currentQ.id}_essay"]`).value;
-                if(!text) { alert("Please write your answer before moving to the next question."); return; }
-            }
-        }
-        
-        currentStep += step;
-        renderQuestion();
-    }
-
-    function startTimer(duration) {
-        let timer = duration, minutes, seconds;
-        timerInterval = setInterval(() => {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-            document.getElementById('timer').innerText = "Time Remaining: " + minutes + ":" + seconds;
-            if (--timer < 0) {
-                clearInterval(timerInterval);
-                alert("Time is up! Your exam will be submitted automatically.");
+    function runTimer(sec) {
+        const timerDiv = document.getElementById('timer');
+        const interval = setInterval(() => {
+            const m = Math.floor(sec / 60);
+            const s = sec % 60;
+            timerDiv.innerText = `Time Remaining: ${m}:${s < 10 ? '0'+s : s}`;
+            if (sec <= 0) {
+                clearInterval(interval);
+                alert("Time is over! Sending your answers.");
                 document.getElementById('quizForm').submit();
             }
+            sec--;
         }, 1000);
     }
-
-    // Prevent accidental back button
-    window.onbeforeunload = function() { return "Progress will be lost!"; };
 </script>
 
 </body>
