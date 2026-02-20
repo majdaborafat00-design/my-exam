@@ -3,56 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة امتحاناتي الخاصة</title>
+    <title>الامتحان الشامل - 24 سؤال</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; padding: 20px; }
-        .quiz-card { background: white; max-width: 800px; margin: auto; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        h1 { color: #1a73e8; text-align: center; }
-        .question { margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .options label { display: block; padding: 10px; cursor: pointer; border: 1px solid #ddd; margin: 5px 0; border-radius: 5px; }
-        .options label:hover { background-color: #f8f9fa; }
-        .submit-btn { background-color: #1a73e8; color: white; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; width: 100%; font-size: 18px; }
-        #message { display: none; text-align: center; color: green; font-weight: bold; margin-top: 20px; }
+        body { font-family: 'Arial', sans-serif; background-color: #f4f7f9; padding: 20px; direction: rtl; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; }
+        .question-box { margin-bottom: 30px; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; }
+        .question-text { font-size: 1.1rem; font-weight: bold; color: #34495e; margin-bottom: 15px; }
+        .options label { display: block; padding: 10px; margin: 5px 0; background: #f9f9f9; border-radius: 5px; cursor: pointer; transition: 0.2s; }
+        .options label:hover { background: #edf2f7; }
+        .submit-btn { display: block; width: 100%; padding: 15px; background: #27ae60; color: white; border: none; border-radius: 8px; font-size: 1.2rem; cursor: pointer; }
+        .submit-btn:hover { background: #219150; }
+        input[type="text"] { width: 95%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc; }
     </style>
 </head>
 <body>
 
-<div class="quiz-card">
-    <h1>امتحان تكنولوجيا المعلومات</h1>
-    <form id="examForm">
-        <div class="question">
-            <p>1. بناءً على إرشادات NIST الحديثة، ما هو الطول الموصى به لكلمة السر؟</p>
-            <div class="options">
-                <label><input type="radio" name="q1" value="A"> من 8 إلى 64 حرفاً</label>
-                <label><input type="radio" name="q1" value="B"> 8 أحرف فقط</label>
-                <label><input type="radio" name="q1" value="C"> لا يوجد حد أقصى</label>
-            </div>
-        </div>
+<div class="container">
+    <h1>امتحان الـ 24 سؤالاً</h1>
+    <p style="text-align:center;">يرجى الإجابة على جميع الأسئلة بعناية.</p>
 
-        <div class="question">
-            <p>2. عند تنفيذ الأمر ls /bin /nonexistent_folder، ماذا سيكون سلوك النظام؟</p>
-            <div class="options">
-                <label><input type="radio" name="q2" value="A"> سيفشل الأمر تماماً</label>
-                <label><input type="radio" name="q2" value="B"> سيعرض محتويات /bin ثم رسالة خطأ للمجلد غير الموجود</label>
-                <label><input type="radio" name="q2" value="C"> سيعرض رسالة خطأ فقط</label>
-            </div>
-        </div>
-
-        <button type="button" class="submit-btn" onclick="submitExam()">إرسال الإجابات</button>
-    </form>
-    <div id="message">تم استلام إجاباتك بنجاح! سيتم مراجعتها من قبل المعلم.</div>
-</div>
-
-<script>
-    function submitExam() {
-        // هنا نقوم بإخفاء الأسئلة وإظهار رسالة نجاح فقط
-        document.getElementById('examForm').style.display = 'none';
-        document.getElementById('message').style.display = 'block';
+    <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
         
-        // ملاحظة: هنا سنربط الإجابات بخدمة إرسال للإيميل لاحقاً
-        console.log("Answers submitted successfully.");
-    }
-</script>
+        <div class="question-box" style="background: #eef2f3;">
+            <p class="question-text">بيانات الطالب:</p>
+            <input type="text" name="Student_Name" placeholder="اكتب اسمك الثلاثي هنا" required>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">1. ما هو طول كلمة السر الموصى به حسب NIST؟</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="8-64" required> بين 8 و 64 حرفاً</label>
+                <label><input type="radio" name="q1" value="8-only"> 8 أحرف فقط</label>
+                <label><input type="radio" name="q1" value="no-limit"> لا يوجد حد معين</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">2. ناتج تنفيذ الأمر ls /bin /nonexistent_folder هو:</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="fail"> فشل الأمر تماماً</label>
+                <label><input type="radio" name="q2" value="success-then-error" required> عرض محتويات bin ثم رسالة خطأ للمجلد المفقود</label>
+                <label><input type="radio" name="q2" value="error-only"> رسالة خطأ فقط</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">3. أي من الأوامر التالية يعتبر صحيحاً برمجياً في Linux؟</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="A"> ls -lt --reverse</label>
+                <label><input type="radio" name="q3" value="B"> ls -tl --reverse</label>
+                <label><input type="radio" name="q3" value="C"> ls -l -t --reverse</label>
+                <label><input type="radio" name="q3" value="all" required> كل ما ذكر صحيح</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">4. اكتب نص السؤال الرابع هنا من الـ PDF</p>
+            <div class="options">
+                <label><input type="radio" name="q4" value="opt1"> خيار أ</label>
+                <label><input type="radio" name="q4" value="opt2"> خيار ب</label>
+                <label><input type="radio" name="q4" value="opt3"> خيار ج</label>
+            </div>
+        </div>
+        <button type="submit" class="submit-btn">إرسال الإجابات النهائية</button>
+    </form>
+</div>
 
 </body>
 </html>
