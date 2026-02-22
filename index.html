@@ -459,7 +459,7 @@ async function getIP() {
 
 // Exam logic
 let currentStep = 1;
-let totalSteps = 1; // Update dynamically when you add questions
+let totalSteps = document.querySelectorAll('.question-step').length; // يحسب كل الأسئلة تلقائي
 
 function startExam() {
     const name = document.getElementById('student_name').value.trim();
